@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Race Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="track-section">
+            <div class="track-image">
+                <!-- 操场跑道图片 -->
+            </div>
+            <div class="control-panel">
+                <!-- 跑道数据控制 -->
+                <label for="track-type">Track Type:</label>
+                <select id="track-type">
+                    <option value="rubber">Rubber</option>
+                    <option value="dirt">Dirt</option>
+                </select>
+                <label for="track-condition">Track Condition:</label>
+                <select id="track-condition">
+                    <option value="dry">Dry</option>
+                    <option value="wet">Wet</option>
+                </select>
+                <label for="wind-direction">Wind Direction:</label>
+                <select id="wind-direction">
+                    <option value="headwind">Headwind</option>
+                    <option value="tailwind">Tailwind</option>
+                </select>
+                <label for="wind-speed">Wind Speed (mph):</label>
+                <input type="number" id="wind-speed">
+                <label for="race-distance">Race Distance:</label>
+                <select id="race-distance">
+                    <option value="800">800m</option>
+                    <option value="1600">1600m</option>
+                    <option value="3200">3200m</option>
+                </select>
+                <button onclick="startRace()">Start Race</button>
+            </div>
+        </div>
+        <div class="personal-info">
+            <!-- 个人速度等信息 -->
+            <label for="elapsed-time">Elapsed Time (seconds):</label>
+            <input type="number" id="elapsed-time" onchange="calculatePace()">
+            <label for="pace">Pace (min/mile):</label>
+            <input type="number" id="pace" onchange="calculateTime()">
+            <label for="lane">Lane:</label>
+            <input type="number" id="lane" min="1" max="8">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

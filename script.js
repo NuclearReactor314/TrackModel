@@ -31,7 +31,7 @@ function updateRace() {
     const runnerSpeed = calculateRunnerSpeed() + windEffect; // Default speed is 5 m/s
 
     // Calculate the distance covered by the runner
-    runnerDistance += elapsedTimeInSeconds * runnerSpeed;
+    runnerDistance = calculateDistanceCovered(elapsedTimeInSeconds, runnerSpeed);
 
     // Check if the runner has completed the race
     if (runnerDistance >= raceDistance) {
@@ -47,6 +47,10 @@ function updateRace() {
 
     // Update the timer display
     updateTimer(elapsedTimeInSeconds);
+}
+
+function calculateDistanceCovered(elapsedTime, speed) {
+    return elapsedTime * speed;
 }
 
 function calculateRunnerSpeed() {
@@ -73,16 +77,24 @@ function stopRace() {
 }
 
 function displayResults(elapsedTimeInSeconds) {
-    // Display the pace and total time
+    // Calculate pace and total time
     const pace = calculatePace(elapsedTimeInSeconds);
     const totalTime = formatTime(elapsedTimeInSeconds);
 
-    alert(`Race completed!\nPace: ${pace} min/mile\nTotal Time: ${totalTime}`);
+    // Display the results
+    alert(`Race completed!\nAverage Pace: ${formatPace(pace)} per mile\nTotal Time: ${totalTime}`);
 }
 
 function calculatePace(elapsedTimeInSeconds) {
     const totalMinutes = elapsedTimeInSeconds / 60;
-    return totalMinutes / (runnerDistance / 1609.34); // Convert meters to miles
+    const pacePerMile = totalMinutes / (raceDistance / 1609.34); // Convert meters to miles
+    return pacePerMile;
+}
+
+function formatPace(pace) {
+    const paceMinutes = Math.floor(pace);
+    const paceSeconds = Math.floor((pace - paceMinutes) * 60);
+    return `${padZero(paceMinutes)}:${padZero(paceSeconds)}`;
 }
 
 function formatTime(timeInSeconds) {

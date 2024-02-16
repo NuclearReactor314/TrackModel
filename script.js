@@ -34,6 +34,12 @@ function updateRace(raceDistance) {
     // Calculate the distance covered by the runner
     const distanceCovered = elapsedTimeInSeconds * runnerSpeed;
 
+    // Check if the runner has completed the race
+    if (runnerDistance >= raceDistance) {
+        stopRace();
+        displayResults(elapsedTimeInSeconds);
+    }
+
     // Update the runner distance
     runnerDistance += distanceCovered;
 

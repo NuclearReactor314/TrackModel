@@ -53,9 +53,38 @@ function calculateDistanceCovered(elapsedTime, speed) {
     return elapsedTime * speed;
 }
 
-function calculateRunnerSpeed() {
-    const paceMinutesPerMile = parseFloat(document.getElementById("pace").value) || 0;
-    return 1 / paceMinutesPerMile; // Convert pace to speed (meters per second)
+function updateRace() {
+    const currentTime = new Date().getTime();
+    const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
+
+    // Calculate runner speed based on wind conditions (headwind or tailwind)
+    const windDirection = document.getElementById("wind-direction").value;
+    const windSpeed = parseFloat(document.getElementById("wind-speed").value) || 0;
+    const windEffect = (windDirection === "headwind") ? -windSpeed : windSpeed;
+
+    // Calculate runner speed (adjust as needed)
+    const runnerSpeed = calculateRunnerSpeed() + windEffect; // Default speed is 5 m/s
+
+    // Calculate the distance covered by the runner
+    runnerDistance += elapsedTimeInSeconds * runnerSpeed;
+
+    // Ensure distance covered is always positive
+    runnerDistance = Math.max(runnerDistance, 0);
+
+    // Check if the runner has completed the race
+    if (runnerDistance >= raceDistance) {
+        stopRace();
+        displayResults(elapsedTimeInSeconds);
+    }
+
+    // Update the runner icon position
+    moveRunner(runnerDistance);
+
+    // Update the distance covered output
+    updateDistanceCovered(runnerDistance);
+
+    // Update the timer display
+    updateTimer(elapsedTimeInSeconds);
 }
 
 function moveRunner(distance) {

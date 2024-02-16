@@ -55,8 +55,7 @@ function calculateDistanceCovered(elapsedTime, speed) {
 
 function calculateRunnerSpeed() {
     const paceMinutesPerMile = parseFloat(document.getElementById("pace").value) || 0;
-    const paceSecondsPerMile = paceMinutesPerMile * 60;
-    return 1609.34 / paceSecondsPerMile; // Convert pace to speed (meters per second)
+    return 1 / paceMinutesPerMile; // Convert pace to speed (meters per second)
 }
 
 function moveRunner(distance) {

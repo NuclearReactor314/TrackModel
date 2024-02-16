@@ -1,25 +1,24 @@
 let intervalId; // Variable to store the interval ID for the timer
 let startTime; // Variable to store the start time
 let runnerDistance = 0; // Variable to store the runner's distance in meters
+let raceDistance = 0; // Variable to store the total race distance
 
 function startRace() {
     // Clear any existing timer interval
     clearInterval(intervalId);
 
-    // Reset runner distance and start time
+    // Reset runner distance, race distance, and start time
     runnerDistance = 0;
+    raceDistance = parseInt(document.getElementById("race-distance").value) || 0;
     startTime = new Date().getTime();
-
-    // Get the selected race distance
-    const raceDistance = document.getElementById("race-distance").value;
 
     // Set up the interval for updating runner distance and timer
     intervalId = setInterval(function () {
-        updateRace(raceDistance);
+        updateRace();
     }, 1000); // Update every 1 second (adjust as needed)
 }
 
-function updateRace(raceDistance) {
+function updateRace() {
     const currentTime = new Date().getTime();
     const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
 
@@ -32,16 +31,13 @@ function updateRace(raceDistance) {
     const runnerSpeed = calculateRunnerSpeed() + windEffect; // Default speed is 5 m/s
 
     // Calculate the distance covered by the runner
-    const distanceCovered = elapsedTimeInSeconds * runnerSpeed;
+    runnerDistance += elapsedTimeInSeconds * runnerSpeed;
 
     // Check if the runner has completed the race
     if (runnerDistance >= raceDistance) {
         stopRace();
         displayResults(elapsedTimeInSeconds);
     }
-
-    // Update the runner distance
-    runnerDistance += distanceCovered;
 
     // Update the runner icon position
     moveRunner(runnerDistance);
@@ -59,30 +55,7 @@ function calculateRunnerSpeed() {
 }
 
 function moveRunner(distance) {
-    const trackImage = document.getElementById("track-image");
-    const runnerIcon = document.getElementById("runner-icon");
-    const trackType = document.getElementById("track-type").value;
-
-    const trackWidth = trackImage.clientWidth;
-
-    // Calculate the percentage position based on the total race distance
-    const percentagePosition = (distance / raceDistance) * 100;
-
-    // Update the runner icon position
-    runnerIcon.style.left = percentagePosition + "%";
-
-    // Adjust the icon's top position based on track type
-    const trackImageRect = trackImage.getBoundingClientRect();
-    const iconHeight = runnerIcon.clientHeight;
-
-    if (trackType === "dirt") {
-        const dirtTrackOffset = 20; // You can customize the offset as needed
-        const dirtTrackPosition = trackImageRect.top + dirtTrackOffset;
-        runnerIcon.style.top = dirtTrackPosition + "px";
-    } else {
-        const defaultTopPosition = trackImageRect.top + trackImageRect.height / 2 - iconHeight / 2;
-        runnerIcon.style.top = defaultTopPosition + "px";
-    }
+    // ... (unchanged)
 }
 
 function updateDistanceCovered(distance) {
@@ -95,6 +68,23 @@ function updateTimer(elapsedTime) {
     timerDisplay.textContent = formatTime(elapsedTime);
 }
 
+function stopRace() {
+    clearInterval(intervalId);
+}
+
+function displayResults(elapsedTimeInSeconds) {
+    // Display the pace and total time
+    const pace = calculatePace(elapsedTimeInSeconds);
+    const totalTime = formatTime(elapsedTimeInSeconds);
+
+    alert(`Race completed!\nPace: ${pace} min/mile\nTotal Time: ${totalTime}`);
+}
+
+function calculatePace(elapsedTimeInSeconds) {
+    const totalMinutes = elapsedTimeInSeconds / 60;
+    return totalMinutes / (runnerDistance / 1609.34); // Convert meters to miles
+}
+
 function formatTime(timeInSeconds) {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = Math.floor(timeInSeconds % 60);
@@ -105,14 +95,8 @@ function padZero(num) {
     return (num < 10) ? `0${num}` : num;
 }
 
-// Function to stop the race
-function stopRace() {
-    clearInterval(intervalId);
-}
-
-// Additional function to reset the runner distance, timer, and output
 function resetRace() {
-    clearInterval(intervalId);
+    stopRace();
     runnerDistance = 0;
     startTime = null;
     moveRunner(runnerDistance);

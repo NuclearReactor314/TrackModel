@@ -6,6 +6,10 @@
 
 .track-section {
     width: 48%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .track-image {
@@ -41,6 +45,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .control-panel button:hover {
@@ -50,8 +55,8 @@
 .personal-info {
     width: 48%;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {

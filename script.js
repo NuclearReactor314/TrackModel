@@ -62,26 +62,10 @@ function moveRunner(distance) {
     // ... (unchanged)
 }
 
-function calculateDistanceCovered(elapsedTime, pace) {
-    const elapsedTimeInMinutes = elapsedTime / 60; // Convert elapsed time to minutes
-    const distanceCoveredInMiles = elapsedTimeInMinutes * pace; // Calculate distance in miles
-    return distanceCoveredInMiles * 1609.34; // Convert miles to meters
+function updateDistanceCovered(distance) {
+    const distanceCoveredOutput = document.getElementById("runner-distance");
+    distanceCoveredOutput.value = distance.toFixed(2);
 }
-
-function updateRace() {
-    const currentTime = new Date().getTime();
-    const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
-
-    // Calculate runner speed based on wind conditions (headwind or tailwind)
-    const windDirection = document.getElementById("wind-direction").value;
-    const windSpeed = parseFloat(document.getElementById("wind-speed").value) || 0;
-    const windEffect = (windDirection === "headwind") ? -windSpeed : windSpeed;
-
-    // Calculate runner speed (adjust as needed)
-    const paceMinutesPerMile = parseFloat(document.getElementById("pace").value) || 0;
-    const runnerSpeed = 1 / paceMinutesPerMile + windEffect; // Convert pace to speed (minutes per mile)
-
-  
 
 function updateTimer(elapsedTime) {
     const timerDisplay = document.getElementById("timer");

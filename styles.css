@@ -12,26 +12,40 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.track-image-container {
+    position: relative;
+}
+
 .track-image {
-    width: 400px;
-    background-image: url('track_image.jpg'); 
-    background-size: cover;
-    background-position: center;
-    height: auto; 
+    width: 100%;
+    max-width: 400px; /* Adjust as needed */
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.runner-icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background-color: red; /* Adjust color as needed */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .control-panel {
     margin-top: 20px;
 }
 
-.control-panel label, .personal-info label {
+.control-panel label {
     display: block;
     margin-bottom: 5px;
 }
 
-.control-panel select, .control-panel input[type="number"], .personal-info input[type="number"] {
+.control-panel select,
+.control-panel input[type="number"],
+.control-panel button {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
@@ -40,7 +54,6 @@
 }
 
 .control-panel button {
-    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;

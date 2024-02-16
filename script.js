@@ -62,9 +62,42 @@ function moveRunner(distance) {
     // ... (unchanged)
 }
 
-function updateDistanceCovered(distance) {
-    const distanceCoveredOutput = document.getElementById("runner-distance");
-    distanceCoveredOutput.value = distance.toFixed(2);
+function calculateDistanceCovered(elapsedTime, pace) {
+    const elapsedTimeInMinutes = elapsedTime / 60; // Convert elapsed time to minutes
+    const distanceCoveredInMiles = elapsedTimeInMinutes * pace; // Calculate distance in miles
+    return distanceCoveredInMiles * 1609.34; // Convert miles to meters
+}
+
+function updateRace() {
+    const currentTime = new Date().getTime();
+    const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
+
+    // Calculate runner speed based on wind conditions (headwind or tailwind)
+    const windDirection = document.getElementById("wind-direction").value;
+    const windSpeed = parseFloat(document.getElementById("wind-speed").value) || 0;
+    const windEffect = (windDirection === "headwind") ? -windSpeed : windSpeed;
+
+    // Calculate runner speed (adjust as needed)
+    const paceMinutesPerMile = parseFloat(document.getElementById("pace").value) || 0;
+    const runnerSpeed = 1 / paceMinutesPerMile + windEffect; // Convert pace to speed (minutes per mile)
+
+    // Calculate the distance covered by the runner
+    runnerDistance = calculateDistanceCovered(elapsedTimeInSeconds, runnerSpeed);
+
+    // Check if the runner has completed the race
+    if (runnerDistance >= raceDistance) {
+        stopRace();
+        displayResults(elapsedTimeInSeconds);
+    }
+
+    // Update the runner icon position
+    moveRunner(runnerDistance);
+
+    // Update the distance covered output
+    updateDistanceCovered(runnerDistance);
+
+    // Update the timer display
+    updateTimer(elapsedTimeInSeconds);
 }
 
 function updateTimer(elapsedTime) {

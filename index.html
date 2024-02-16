@@ -11,42 +11,43 @@
         <div class="track-section">
             <div class="track-image">
                 <!-- 操场跑道图片 -->
+                <img src="track_image.jpg" alt="Track Image">
             </div>
             <div class="control-panel">
                 <!-- 跑道数据控制 -->
-                <label for="track-type">Track Type:</label>
+                <label for="track-type">Track Type:</label><br>
                 <select id="track-type">
-                    <option value="rubber">Rubber</option>
-                    <option value="dirt">Dirt</option>
-                </select>
-                <label for="track-condition">Track Condition:</label>
+                    <option value="rubber">Rubber</option><br>
+                    <option value="dirt">Dirt</option><br>
+                </select><br>
+                <label for="track-condition">Track Condition:</label><br>
                 <select id="track-condition">
-                    <option value="dry">Dry</option>
-                    <option value="wet">Wet</option>
-                </select>
-                <label for="wind-direction">Wind Direction:</label>
+                    <option value="dry">Dry</option><br>
+                    <option value="wet">Wet</option><br>
+                </select><br>
+                <label for="wind-direction">Wind Direction:</label><br>
                 <select id="wind-direction">
-                    <option value="headwind">Headwind</option>
-                    <option value="tailwind">Tailwind</option>
-                </select>
-                <label for="wind-speed">Wind Speed (mph):</label>
-                <input type="number" id="wind-speed">
-                <label for="race-distance">Race Distance:</label>
+                    <option value="headwind">Headwind</option><br>
+                    <option value="tailwind">Tailwind</option><br>
+                </select><br>
+                <label for="wind-speed">Wind Speed (mph):</label><br>
+                <input type="number" id="wind-speed"><br>
+                <label for="race-distance">Race Distance:</label><br>
                 <select id="race-distance">
-                    <option value="800">800m</option>
-                    <option value="1600">1600m</option>
-                    <option value="3200">3200m</option>
-                </select>
+                    <option value="800">800m</option><br>
+                    <option value="1600">1600m</option><br>
+                    <option value="3200">3200m</option><br>
+                </select><br>
                 <button onclick="startRace()">Start Race</button>
             </div>
         </div>
         <div class="personal-info">
             <!-- 个人速度等信息 -->
-            <label for="elapsed-time">Elapsed Time (seconds):</label>
-            <input type="number" id="elapsed-time" onchange="calculatePace()">
-            <label for="pace">Pace (min/mile):</label>
-            <input type="number" id="pace" onchange="calculateTime()">
-            <label for="lane">Lane:</label>
+            <label for="elapsed-time">Elapsed Time (seconds):</label><br>
+            <input type="number" id="elapsed-time" onchange="calculatePace()"><br>
+            <label for="pace">Pace (min/mile):</label><br>
+            <input type="number" id="pace" onchange="calculateTime()"><br>
+            <label for="lane">Lane:</label><br>
             <input type="number" id="lane" min="1" max="8">
         </div>
     </div>

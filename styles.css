@@ -1,6 +1,7 @@
 .container {
     display: flex;
     justify-content: space-between;
+    padding: 20px;
 }
 
 .track-section {
@@ -8,14 +9,57 @@
 }
 
 .track-image {
-    /* 操场跑道图片的样式 */
+    background-image: url('track_image.jpg'); /* Replace 'track_image.jpg' with your track image */
+    background-size: cover;
+    background-position: center;
+    height: 400px; /* Adjust height as needed */
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .control-panel {
-    /* 控制面板的样式 */
+    margin-top: 20px;
+}
+
+.control-panel label, .personal-info label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.control-panel select, .control-panel input[type="number"], .personal-info input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.control-panel button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.control-panel button:hover {
+    background-color: #45a049;
 }
 
 .personal-info {
     width: 48%;
-    /* 个人信息区域的样式 */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    
+    .track-section, .personal-info {
+        width: 100%;
+    }
 }

@@ -81,24 +81,7 @@ function updateRace() {
     const paceMinutesPerMile = parseFloat(document.getElementById("pace").value) || 0;
     const runnerSpeed = 1 / paceMinutesPerMile + windEffect; // Convert pace to speed (minutes per mile)
 
-    // Calculate the distance covered by the runner
-    runnerDistance = calculateDistanceCovered(elapsedTimeInSeconds, runnerSpeed);
-
-    // Check if the runner has completed the race
-    if (runnerDistance >= raceDistance) {
-        stopRace();
-        displayResults(elapsedTimeInSeconds);
-    }
-
-    // Update the runner icon position
-    moveRunner(runnerDistance);
-
-    // Update the distance covered output
-    updateDistanceCovered(runnerDistance);
-
-    // Update the timer display
-    updateTimer(elapsedTimeInSeconds);
-}
+  
 
 function updateTimer(elapsedTime) {
     const timerDisplay = document.getElementById("timer");

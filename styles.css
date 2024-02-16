@@ -13,11 +13,11 @@
 }
 
 .track-image {
-    width: 50%;
+    width: 40%;
     background-image: url('track_image.jpg'); 
     background-size: cover;
     background-position: center;
-    height: 350px; 
+    height: auto; 
     border: 1px solid #ccc;
     border-radius: 5px;
 }

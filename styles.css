@@ -5,7 +5,7 @@
 }
 
 .track-section {
-    width: 55%;
+    width: 50%;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -13,7 +13,7 @@
 }
 
 .track-image {
-    width: 300px;
+    width: 400px;
     background-image: url('track_image.jpg'); 
     background-size: cover;
     background-position: center;

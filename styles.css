@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.track-section {
+    width: 48%;
+}
+
+.track-image {
+    /* 操场跑道图片的样式 */
+}
+
+.control-panel {
+    /* 控制面板的样式 */
+}
+
+.personal-info {
+    width: 48%;
+    /* 个人信息区域的样式 */
+}

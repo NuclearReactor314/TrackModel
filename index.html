@@ -37,11 +37,12 @@
                     <option value="1600">1600m</option>
                     <option value="3200">3200m</option>
                 </select><br>
-                <label for="runner-position">Runner Position:</label><br>
-                <input type="number" id="runner-position" onchange="moveRunner()" value="0"><br>
+                <label for="lane">Lane:</label><br>
+                <input type="number" id="lane" min="1" max="8">
+                <br>
                 <button onclick="startRace()">Start Race</button>
                 <button onclick="stopRace()">Stop Race</button>
-                <button onclick="resetRunner()">Reset Runner</button>
+                <button onclick="resetRace()">Reset Race</button>
             </div>
         </div>
         <div class="personal-info">
@@ -49,10 +50,11 @@
             <input type="number" id="elapsed-time" onchange="calculatePace()"><br>
             <label for="pace">Pace (min/mile):</label><br>
             <input type="number" id="pace" onchange="calculateTime()"><br>
-            <label for="lane">Lane:</label><br>
-            <input type="number" id="lane" min="1" max="8">
+            <label for="runner-distance">Distance Covered (meters):</label><br>
+            <input type="number" id="runner-distance" readonly>
         </div>
     </div>
+    <div id="timer" class="timer"></div>
 
     <script src="script.js"></script>
 </body>

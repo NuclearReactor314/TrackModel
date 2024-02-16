@@ -1,19 +1,19 @@
 let intervalId; // Variable to store the interval ID for the timer
 let startTime; // Variable to store the start time
-let runnerPosition = 0; // Variable to store the runner's position in meters
+let runnerDistance = 0; // Variable to store the runner's distance in meters
 
 function startRace() {
     // Clear any existing timer interval
     clearInterval(intervalId);
 
-    // Reset runner position and start time
-    runnerPosition = 0;
+    // Reset runner distance and start time
+    runnerDistance = 0;
     startTime = new Date().getTime();
 
     // Get the selected race distance
     const raceDistance = document.getElementById("race-distance").value;
 
-    // Set up the interval for updating runner position and timer
+    // Set up the interval for updating runner distance and timer
     intervalId = setInterval(function () {
         updateRace(raceDistance);
     }, 1000); // Update every 1 second (adjust as needed)
@@ -34,11 +34,14 @@ function updateRace(raceDistance) {
     // Calculate the distance covered by the runner
     const distanceCovered = elapsedTimeInSeconds * runnerSpeed;
 
-    // Update the runner position
-    runnerPosition = distanceCovered;
+    // Update the runner distance
+    runnerDistance = distanceCovered;
 
     // Update the runner icon position
-    moveRunner(runnerPosition);
+    moveRunner(runnerDistance);
+
+    // Update the distance covered output
+    updateDistanceCovered(runnerDistance);
 
     // Update the timer display
     updateTimer(elapsedTimeInSeconds);
@@ -71,6 +74,11 @@ function moveRunner(distance) {
     }
 }
 
+function updateDistanceCovered(distance) {
+    const distanceCoveredOutput = document.getElementById("runner-distance");
+    distanceCoveredOutput.value = distance.toFixed(2);
+}
+
 function updateTimer(elapsedTime) {
     const timerDisplay = document.getElementById("timer");
     timerDisplay.textContent = formatTime(elapsedTime);
@@ -91,11 +99,12 @@ function stopRace() {
     clearInterval(intervalId);
 }
 
-// Additional function to reset the runner position and timer
+// Additional function to reset the runner distance, timer, and output
 function resetRace() {
     clearInterval(intervalId);
-    runnerPosition = 0;
+    runnerDistance = 0;
     startTime = null;
-    moveRunner(runnerPosition);
+    moveRunner(runnerDistance);
+    updateDistanceCovered(runnerDistance);
     updateTimer(0);
 }

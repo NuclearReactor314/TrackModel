@@ -29,13 +29,13 @@ function updateRace(raceDistance) {
     const windEffect = (windDirection === "headwind") ? -windSpeed : windSpeed;
 
     // Calculate runner speed (adjust as needed)
-    const runnerSpeed = 5 + windEffect; // Default speed is 5 m/s
+    const runnerSpeed = calculateRunnerSpeed() + windEffect; // Default speed is 5 m/s
 
     // Calculate the distance covered by the runner
     const distanceCovered = elapsedTimeInSeconds * runnerSpeed;
 
     // Update the runner distance
-    runnerDistance = distanceCovered;
+    runnerDistance += distanceCovered;
 
     // Update the runner icon position
     moveRunner(runnerDistance);
@@ -47,6 +47,11 @@ function updateRace(raceDistance) {
     updateTimer(elapsedTimeInSeconds);
 }
 
+function calculateRunnerSpeed() {
+    const pace = parseFloat(document.getElementById("pace").value) || 0;
+    return 1 / (pace / 60); // Convert pace to speed (meters per second)
+}
+
 function moveRunner(distance) {
     const trackImage = document.getElementById("track-image");
     const runnerIcon = document.getElementById("runner-icon");
@@ -55,7 +60,7 @@ function moveRunner(distance) {
     const trackWidth = trackImage.clientWidth;
 
     // Calculate the percentage position based on the total race distance
-    const percentagePosition = (distance / trackWidth) * 100;
+    const percentagePosition = (distance / raceDistance) * 100;
 
     // Update the runner icon position
     runnerIcon.style.left = percentagePosition + "%";

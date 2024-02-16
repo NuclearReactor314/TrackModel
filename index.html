@@ -9,34 +9,27 @@
 <body>
     <div class="container">
         <div class="track-section">
-            <div class="track-image">
-                <img src="track_image.jpg" alt="Track Image">
+            <div class="track-image-container" style="position: relative;">
+                <img src="track_image.jpg" alt="Track Image" id="track-image">
+                <div id="runner-icon" class="runner-icon"></div>
             </div>
             <div class="control-panel">
                 <label for="track-type">Track Type:</label><br>
                 <select id="track-type">
-                    <option value="running">Running track</option><br>
-                    <option value="dirt">Dirt track</option><br>
+                    <option value="running">Running track</option>
+                    <option value="dirt">Dirt track</option>
                 </select><br>
-                <label for="track-condition">Track Condition:</label><br>
-                <select id="track-condition">
-                    <option value="dry">Dry</option><br>
-                    <option value="wet">Wet</option><br>
-                </select><br>
-                <label for="wind-direction">Wind Direction:</label><br>
-                <select id="wind-direction">
-                    <option value="headwind">Headwind</option><br>
-                    <option value="tailwind">Tailwind</option><br>
-                </select><br>
-                <label for="wind-speed">Wind Speed (mph):</label><br>
-                <input type="number" id="wind-speed"><br>
                 <label for="race-distance">Race Distance:</label><br>
                 <select id="race-distance">
-                    <option value="800">800m</option><br>
-                    <option value="1600">1600m</option><br>
-                    <option value="3200">3200m</option><br>
+                    <option value="800">800m</option>
+                    <option value="1600">1600m</option>
+                    <option value="3200">3200m</option>
                 </select><br>
+                <label for="runner-position">Runner Position:</label><br>
+                <input type="number" id="runner-position" onchange="moveRunner()" value="0"><br>
                 <button onclick="startRace()">Start Race</button>
+                <button onclick="stopRace()">Stop Race</button>
+                <button onclick="resetRunner()">Reset Runner</button>
             </div>
         </div>
         <div class="personal-info">

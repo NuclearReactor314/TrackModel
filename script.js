@@ -1,13 +1,13 @@
-let intervalId; // Variable to store the interval ID for the timer
-let startTime; // Variable to store the start time
-let runnerDistance = 0; // Variable to store the runner's distance in meters
-let raceDistance = 0; // Variable to store the total race distance
+let intervalId;
+let startTime; 
+let runnerDistance = 0; 
+let raceDistance = 0; 
 
 function startRace() {
     // Clear any existing timer interval
     clearInterval(intervalId);
 
-    // Reset runner distance, race distance, and start time
+    // Reset everything
     runnerDistance = 0;
     raceDistance = parseInt(document.getElementById("race-distance").value) || 0;
     startTime = new Date().getTime();
@@ -59,7 +59,6 @@ function calculateDistanceCovered(elapsedTime, speed) {
 }
 
 function moveRunner(distance) {
-    // ... (unchanged)
 }
 
 function updateDistanceCovered(distance) {
